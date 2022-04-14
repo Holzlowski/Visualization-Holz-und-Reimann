@@ -20,6 +20,13 @@ public class XRechnung : MonoBehaviour
         Reset();
     }
 
+    private void Update() {
+         if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
+    }
+
     public void Reset() {
         if (blauerKreis.activeInHierarchy)
             blueScaler = blauerKreis.GetComponent<Scaler>();
