@@ -7,10 +7,13 @@ public class RandomSpawner : MonoBehaviour
     [SerializeField] int numberOfObjects;
     [SerializeField] float minDist;
     [SerializeField] GameObject obj;
+    public int distanceToBorder = 2;
     private List<Vector3> spawnPos;
+    private List<GameObject> objects;
     private Vector3[] cornerPoints;
     private RectTransform panel;
-    private int maxAttempts = 100;
+    private int maxAttempts = 900;
+
 
 
 
@@ -18,8 +21,10 @@ public class RandomSpawner : MonoBehaviour
     void Start()
     {
         spawnPos = new List<Vector3>();
+        objects = new List<GameObject>();
         panel = GetComponent<RectTransform>();
         DisplayWorldCorners();
+        RandomSpawn(GetSpawnPos());
     }
 
     // Update is called once per frame
@@ -43,19 +48,24 @@ public class RandomSpawner : MonoBehaviour
         }
     }
 
-    void RandomSpawn()
+    private List<Vector3> GetSpawnPos()
+    {
+        return spawnPos;
+    }
+
+    void RandomSpawn(List<Vector3> spawnPos)
     {
         for (int i = 0; i < numberOfObjects; i++)
         {
-            spawnPos[i] = default(Vector3);
             var attempts = 0;
             while (attempts < maxAttempts)
             {
-                spawnPos[i] = new Vector3(Random.Range(cornerPoints[0].x, cornerPoints[3].x), Random.Range(cornerPoints[1].y, cornerPoints[0].y), panel.position.z);
+                Vector3 randomPos = getRandomPosition();
                 var ok = true;
                 foreach (var position in this.spawnPos)
                 {
-                    var dist = (spawnPos[i] - position).magnitude;
+                    var dist = (randomPos - position).magnitude;
+
                     if (dist < minDist)
                     {
                         ok = false;
@@ -64,21 +74,39 @@ public class RandomSpawner : MonoBehaviour
                 }
 
                 if (ok)
-                {
+                {   
+                    spawnPos.Add(randomPos);
                     break;
                 }
 
                 attempts++;
             }
 
-            Instantiate(obj, spawnPos[i], Quaternion.identity);
+            GameObject ob = Instantiate(obj, spawnPos[i], Quaternion.identity, transform);
+            objects.Add(ob);
 
         }
     }
 
-    private void Reset()
+    Vector3 getRandomPosition(){
+       Vector3 randomPos = new Vector3(Random.Range(cornerPoints[0].x + distanceToBorder, cornerPoints[3].x - distanceToBorder),
+                                       Random.Range(cornerPoints[1].y - distanceToBorder , cornerPoints[0].y + distanceToBorder), panel.position.z);
+        return randomPos;
+    }
+
+    void clearObjects(){
+        spawnPos.Clear();
+        foreach(GameObject ob in objects){
+            Destroy(ob);
+        }
+        objects.Clear();
+    }
+
+    public void Reset()
     {
         DisplayWorldCorners();
+        clearObjects();
+        RandomSpawn(GetSpawnPos());
     }
 }
 
