@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,9 @@ public class RandomSpawner : MonoBehaviour
     [SerializeField] int numberOfObjects;
     [SerializeField] float minDist;
     [SerializeField] GameObject obj;
-    [SerializeField] GameObject left;
-    [SerializeField] GameObject right;
+    [SerializeField] GameObject leftPanel;
+    [SerializeField] GameObject rightPanel;
+    [SerializeField] GameObject beginButton;
 
     public int distanceToBorder = 2;
 
@@ -22,6 +24,8 @@ public class RandomSpawner : MonoBehaviour
 
     private List<GameObject> objects;
     private int maxAttempts = 900;
+    private int testTimeInMs = 0;
+    private string targetDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -29,19 +33,25 @@ public class RandomSpawner : MonoBehaviour
         spawnPosLeft = new List<Vector3>();
         spawnPosRight = new List<Vector3>();
 
-        panelLeft = left.GetComponent<RectTransform>();
-        panelRight = right.GetComponent<RectTransform>();
+        panelLeft = leftPanel.GetComponent<RectTransform>();
+        panelRight = rightPanel.GetComponent<RectTransform>();
 
         objects = new List<GameObject>();
 
-        DisplayWorldCorners();
-        RandomSpawn(spawnPosLeft, spawnPosRight);
+        testTimeInMs = 100;
+        GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>().text = "Time: " + testTimeInMs + "ms";
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Begin()
     {
+        DisplayWorldCorners();
+        StartCoroutine(RandomSpawn(spawnPosLeft, spawnPosRight));
+        beginButton.SetActive(false);
+    }
 
+    void Auswertung()
+    {
+        Debug.Log("Auswertung kommt hier hin");
     }
 
     void DisplayWorldCorners()
@@ -54,29 +64,17 @@ public class RandomSpawner : MonoBehaviour
 
         panelLeft.GetWorldCorners(cornerPointsLeft);
         panelRight.GetWorldCorners(cornerPointsRight);
-
-        Debug.Log("World Corners Left");
-        for (var i = 0; i < 4; i++)
-        {
-            Debug.Log("World Corner " + i + " : " + cornerPointsLeft[i]);
-        }
-
-        Debug.Log("World Corners Right");
-        for (var i = 0; i < 4; i++)
-        {
-            Debug.Log("World Corner " + i + " : " + cornerPointsRight[i]);
-        }
     }
 
-    void RandomSpawn(List<Vector3> left, List<Vector3> right)
+    IEnumerator RandomSpawn(List<Vector3> left, List<Vector3> right)
     {
         for (int i = 0; i < numberOfObjects; i++)
         {
             var attempts = 0;
             while (attempts < maxAttempts)
             {
-                Vector3 randomPosLeft = getRandomPositionLeft();
-                Vector3 randomPosRight = getRandomPositionRight();
+                Vector3 randomPosLeft = GetRandomPositionLeft();
+                Vector3 randomPosRight = GetRandomPositionRight();
                 var ok = true;
                 foreach (var position in left)
                 {
@@ -120,10 +118,12 @@ public class RandomSpawner : MonoBehaviour
                 {
                     case 0:
                         obL = Instantiate(obj, left[i], Quaternion.identity, transform);
+                        targetDirection = "left";
                         break;
                     case 1:
                         obR = Instantiate(obj, right[i], Quaternion.identity, transform);
-                        break;                   
+                        targetDirection = "right";
+                        break;
                 }
                 obj.GetComponent<Image>().color = new Color(0, 0, 1, 1);
             }
@@ -132,30 +132,53 @@ public class RandomSpawner : MonoBehaviour
                 obL = Instantiate(obj, left[i], Quaternion.identity, transform);
                 obR = Instantiate(obj, right[i], Quaternion.identity, transform);
             }
-            
+
             objects.Add(obL);
             objects.Add(obR);
         }
+        float testTimeInS = testTimeInMs / 1000f;
+        yield return new WaitForSeconds(testTimeInS);
+        ClearObjects();
+
+        testTimeInMs += 50;       
     }
 
-    Vector3 getRandomPositionLeft(){
-       Vector3 randomPos = new(Random.Range(cornerPointsLeft[0].x + distanceToBorder, cornerPointsLeft[3].x - distanceToBorder),
-                                       Random.Range(cornerPointsLeft[1].y - distanceToBorder , cornerPointsLeft[0].y + distanceToBorder), panelLeft.position.z);
+    public void WaitForChoice(string choice)
+    {
+        if (choice == targetDirection)
+        {
+            Debug.Log("Richtig! Target bei "+ (testTimeInMs - 50) + "ms erkannt.");
+            Reset();
+        }
+        else
+        {
+            Debug.Log("Falsch! Target bei " + (testTimeInMs-50) + "ms nicht korrekt erkannt.");
+            GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>().text = "Time: " + testTimeInMs + "ms";
+            beginButton.SetActive(true);
+        }
+    }
+
+    Vector3 GetRandomPositionLeft()
+    {
+        Vector3 randomPos = new(Random.Range(cornerPointsLeft[0].x + distanceToBorder, cornerPointsLeft[3].x - distanceToBorder),
+                                        Random.Range(cornerPointsLeft[1].y - distanceToBorder, cornerPointsLeft[0].y + distanceToBorder), panelLeft.position.z);
         return randomPos;
     }
 
-    Vector3 getRandomPositionRight()
+    Vector3 GetRandomPositionRight()
     {
         Vector3 randomPos = new(Random.Range(cornerPointsRight[0].x + distanceToBorder, cornerPointsRight[3].x - distanceToBorder),
                                         Random.Range(cornerPointsRight[1].y - distanceToBorder, cornerPointsRight[0].y + distanceToBorder), panelRight.position.z);
         return randomPos;
     }
 
-    void clearObjects(){
+    void ClearObjects()
+    {
         spawnPosLeft.Clear();
         spawnPosRight.Clear();
 
-        foreach (GameObject ob in objects){
+        foreach (GameObject ob in objects)
+        {
             Destroy(ob);
         }
 
@@ -164,9 +187,11 @@ public class RandomSpawner : MonoBehaviour
 
     public void Reset()
     {
-        DisplayWorldCorners();
-        clearObjects();
-        RandomSpawn(spawnPosLeft, spawnPosRight);
+        ClearObjects();
+        testTimeInMs = 100;
+
+        GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>().text = "Time: " + testTimeInMs + "ms";
+        beginButton.SetActive(true);
     }
 }
 
