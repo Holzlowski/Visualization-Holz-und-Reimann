@@ -186,8 +186,8 @@ MonoBehaviour:
     y: 0
     width: 363
     height: 561
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -224,9 +224,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 38fbffff
+      m_SelectedIDs: fc580000
+      m_LastClickedID: 22780
+      m_ExpandedIDs: 38fbffffd4580000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -502,9 +502,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 478.463, y: 261.10568, z: -0.8120973}
+    m_Target: {x: 515.3131, y: 276.09467, z: -0.6518285}
     speed: 2
-    m_Value: {x: 478.463, y: 261.10568, z: -0.8120973}
+    m_Value: {x: 515.3131, y: 276.09467, z: -0.6518285}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -555,9 +555,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 271.80743
+    m_Target: 369.89233
     speed: 2
-    m_Value: 271.80743
+    m_Value: 369.89233
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -601,8 +601,8 @@ MonoBehaviour:
     y: 561
     width: 1466
     height: 386
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 10}
@@ -650,23 +650,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts/Aufgabe 2
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets
+  - Assets/Scripts/Aufgabe 2
   m_LastFoldersGridSize: 96
-  m_LastProjectPath: C:\Users\holz9\Documents\Github Projects\Visualization-Holz-und-Reimann-Co.-KG\Visualization
+  m_LastProjectPath: S:\Git-Hub-Projects\Visualization-Holz-und-Reimann-Co.-KG\Visualization
     - Aufgaben
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 92590000
-    m_LastClickedID: 22930
-    m_ExpandedIDs: 0000000086590000885900008a5900008c590000
+    m_SelectedIDs: ba590000
+    m_LastClickedID: 22970
+    m_ExpandedIDs: 00000000a0590000a2590000a4590000a659000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -694,7 +694,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000086590000885900008a5900008c590000
+    m_ExpandedIDs: 00000000a0590000a2590000a4590000a6590000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -719,8 +719,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 1443ffff
-    m_LastClickedInstanceID: -48364
+    m_SelectedInstanceIDs: fc580000
+    m_LastClickedInstanceID: 22780
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000ae5b000000000000
     m_RenameOverlay:
@@ -797,8 +797,8 @@ MonoBehaviour:
     y: 0
     width: 454
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}

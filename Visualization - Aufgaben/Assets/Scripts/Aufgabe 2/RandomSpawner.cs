@@ -46,7 +46,7 @@ public class RandomSpawner : MonoBehaviour
     {
         DisplayWorldCorners();
         StartCoroutine(RandomSpawn(spawnPosLeft, spawnPosRight));
-        beginButton.SetActive(false);
+        //beginButton.SetActive(false);
     }
 
     void Auswertung()
@@ -154,7 +154,7 @@ public class RandomSpawner : MonoBehaviour
         {
             Debug.Log("Falsch! Target bei " + (testTimeInMs-50) + "ms nicht korrekt erkannt.");
             GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>().text = "Time: " + testTimeInMs + "ms";
-            beginButton.SetActive(true);
+            //beginButton.SetActive(true);
         }
     }
 
@@ -191,7 +191,7 @@ public class RandomSpawner : MonoBehaviour
         testTimeInMs = 100;
 
         GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>().text = "Time: " + testTimeInMs + "ms";
-        beginButton.SetActive(true);
+        //beginButton.SetActive(true);
     }
 }
 
