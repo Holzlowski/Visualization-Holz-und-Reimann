@@ -8,10 +8,12 @@ public class RandomSpawner : MonoBehaviour
 {
     [SerializeField] int numberOfObjects;
     [SerializeField] float minDist;
-    [SerializeField] GameObject obj;
+    [SerializeField] GameObject circleObj;
+    [SerializeField] GameObject quaderObj;
+    [SerializeField] GameObject rectObj;
     [SerializeField] GameObject leftPanel;
     [SerializeField] GameObject rightPanel;
-    [SerializeField] GameObject beginButton;
+    [SerializeField] GameObject objectSelector;
 
     public int distanceToBorder = 2;
 
@@ -22,7 +24,9 @@ public class RandomSpawner : MonoBehaviour
     private RectTransform panelLeft;
     private RectTransform panelRight;
 
+    private TMP_Dropdown objectDropdown;
     private List<GameObject> objects;
+    private GameObject currentObj;
     private int maxAttempts = 900;
     private int testTimeInMs = 0;
     private string targetDirection;
@@ -36,22 +40,46 @@ public class RandomSpawner : MonoBehaviour
         panelLeft = leftPanel.GetComponent<RectTransform>();
         panelRight = rightPanel.GetComponent<RectTransform>();
 
+        objectDropdown = objectSelector.GetComponent<TMP_Dropdown>();
+        currentObj = circleObj;
         objects = new List<GameObject>();
 
         testTimeInMs = 100;
         GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>().text = "Time: " + testTimeInMs + "ms";
     }
 
+    private void Update()
+    {
+
+    }
+
     public void Begin()
     {
         DisplayWorldCorners();
         StartCoroutine(RandomSpawn(spawnPosLeft, spawnPosRight));
-        //beginButton.SetActive(false);
     }
 
     void Auswertung()
     {
         Debug.Log("Auswertung kommt hier hin");
+    }
+
+    public void changeObj()
+    {
+        Debug.Log(objectDropdown.value);
+        if (objectDropdown.value == 0)
+        {
+            currentObj = circleObj;
+        }
+        else if (objectDropdown.value == 1)
+        {
+            currentObj = quaderObj;
+        }
+        else if (objectDropdown.value == 2)
+        {
+            currentObj = rectObj;
+        }
+        Reset();
     }
 
     void DisplayWorldCorners()
@@ -113,48 +141,52 @@ public class RandomSpawner : MonoBehaviour
 
             if (i == numberOfObjects - 1)
             {
-                obj.GetComponent<Image>().color = new Color(1, 0, 0, 1);
+                currentObj.GetComponent<Image>().color = new Color(1, 0, 0, 1);
                 switch (Random.Range(0, 2))
                 {
                     case 0:
-                        obL = Instantiate(obj, left[i], Quaternion.identity, transform);
+                        obL = Instantiate(currentObj, left[i], Quaternion.identity, transform);
                         targetDirection = "left";
                         break;
                     case 1:
-                        obR = Instantiate(obj, right[i], Quaternion.identity, transform);
+                        obR = Instantiate(currentObj, right[i], Quaternion.identity, transform);
                         targetDirection = "right";
                         break;
                 }
-                obj.GetComponent<Image>().color = new Color(0, 0, 1, 1);
+                currentObj.GetComponent<Image>().color = new Color(0, 0, 1, 1);
             }
             else
             {
-                obL = Instantiate(obj, left[i], Quaternion.identity, transform);
-                obR = Instantiate(obj, right[i], Quaternion.identity, transform);
+                obL = Instantiate(currentObj, left[i], Quaternion.identity, transform);
+                obR = Instantiate(currentObj, right[i], Quaternion.identity, transform);
             }
 
             objects.Add(obL);
             objects.Add(obR);
         }
-        float testTimeInS = testTimeInMs / 1000f;
-        yield return new WaitForSeconds(testTimeInS);
+
+        yield return new WaitForSeconds((float)testTimeInMs / 1000.0f);
         ClearObjects();
 
-        testTimeInMs += 50;       
+        testTimeInMs += 50;
     }
 
     public void WaitForChoice(string choice)
     {
         if (choice == targetDirection)
         {
-            Debug.Log("Richtig! Target bei "+ (testTimeInMs - 50) + "ms erkannt.");
+            Debug.Log("Richtig! Target bei " + (testTimeInMs - 50) + "ms erkannt.");
             Reset();
+        }
+        else if (choice == "none")
+        {
+            Debug.Log("Target bei " + (testTimeInMs - 50) + "ms nicht erkannt.");
+            GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>().text = "Time: " + testTimeInMs + "ms";
         }
         else
         {
-            Debug.Log("Falsch! Target bei " + (testTimeInMs-50) + "ms nicht korrekt erkannt.");
+            Debug.Log("Falsch! Target bei " + (testTimeInMs - 50) + "ms nicht korrekt erkannt.");
             GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>().text = "Time: " + testTimeInMs + "ms";
-            //beginButton.SetActive(true);
         }
     }
 
@@ -191,7 +223,6 @@ public class RandomSpawner : MonoBehaviour
         testTimeInMs = 100;
 
         GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>().text = "Time: " + testTimeInMs + "ms";
-        //beginButton.SetActive(true);
     }
 }
 
