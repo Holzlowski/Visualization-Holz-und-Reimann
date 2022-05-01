@@ -36,6 +36,8 @@ public class RandomSpawner : MonoBehaviour
     private string targetDirection;
     //ein Bool der True ist wenn es eine Vielfalt der Distraktoren oder Conjunction Search geben soll
     private bool distractionDiversity = false;
+    private ArrayList resultList;
+    private string testName;
 
     // Start is called before the first frame update
     void Start()
@@ -49,39 +51,38 @@ public class RandomSpawner : MonoBehaviour
         objectDropdown = objectSelector.GetComponent<TMP_Dropdown>();
         currentObj = circleObj;
         objects = new List<GameObject>();
-
-        //testTimeInMs = 100;
-        UpdateTime();
-        UpdateTestText();
+        resultList = new ArrayList();
+        NextTest();
     }
 
     //mit dem Next Test Button geht er in den nächsten Test
     public void NextTest()
     {
-
         currentTestNumber++;
         switch (currentTestNumber)
         {
             case 1:
-                TestSettings(200, false);
+                testName = "Farbton";
                 break;
             case 2:
-                TestSettings(300, false);
+                testName = "Form";
                 break;
             case 3:
-                TestSettings(100, true);
+                testName = "Erhöhte Vielfalt der Distraktoren";
+                distractionDiversity = true;
                 break;
             case 4:
-                TestSettings(200, true);
+                testName = "Conjunction Search";
                 break;
             case 5:
-                TestSettings(300, true);
-                break;
-            //Conjunction Search Test
-            case 6:
-                TestSettings(1000, true);
+                currentTestNumber = 0;
+                Auswertung();
+                NextTest();
                 break;
         }
+        testTimeInMs = 100;
+        UpdateTimeText();
+        UpdateTestText();
     }
 
     public void Begin()
@@ -92,7 +93,7 @@ public class RandomSpawner : MonoBehaviour
 
     void Auswertung()
     {
-        Debug.Log("Auswertung kommt hier hin");
+        Debug.Log("Auswertung kommt hier hin. Zeiten für die jeweiligen Tests: "+ resultList[0] + "ms | " + resultList[1] + "ms | " + resultList[2] + "ms | " + resultList[3] + "ms.");
     }
 
     public void changeObj()
@@ -172,19 +173,39 @@ public class RandomSpawner : MonoBehaviour
 
             if (i == numberOfObjects - 1)
             {
-                currentObj.GetComponent<Image>().color = new Color(1, 0, 0, 1);
-                switch (Random.Range(0, 2))
+                Debug.Log(testName);
+
+                if (testName == "Form")
                 {
-                    case 0:
-                        obL = Instantiate(currentObj, left[i], Quaternion.identity, transform);
-                        targetDirection = "left";
-                        break;
-                    case 1:
-                        obR = Instantiate(currentObj, right[i], Quaternion.identity, transform);
-                        targetDirection = "right";
-                        break;
+                    quaderObj.GetComponent<Image>().color = new Color(0, 0, 1, 1);
+                    switch (Random.Range(0, 2))
+                    {
+                        case 0:
+                            obL = Instantiate(quaderObj, left[i], Quaternion.identity, transform);
+                            targetDirection = "left";
+                            break;
+                        case 1:
+                            obR = Instantiate(quaderObj, right[i], Quaternion.identity, transform);
+                            targetDirection = "right";
+                            break;
+                    }
                 }
-                currentObj.GetComponent<Image>().color = new Color(0, 0, 1, 1);
+                else
+                {
+                    currentObj.GetComponent<Image>().color = new Color(1, 0, 0, 1);
+                    switch (Random.Range(0, 2))
+                    {
+                        case 0:
+                            obL = Instantiate(currentObj, left[i], Quaternion.identity, transform);
+                            targetDirection = "left";
+                            break;
+                        case 1:
+                            obR = Instantiate(currentObj, right[i], Quaternion.identity, transform);
+                            targetDirection = "right";
+                            break;
+                    }
+                    currentObj.GetComponent<Image>().color = new Color(0, 0, 1, 1);
+                }
             }
             //wenn Bool an ist, dann werden Random Objekte gespanwt
             else if (distractionDiversity)
@@ -210,20 +231,24 @@ public class RandomSpawner : MonoBehaviour
 
     public void WaitForChoice(string choice)
     {
+
         if (choice == targetDirection)
         {
-            Debug.Log("Richtig! Target bei " + (testTimeInMs - 50) + "ms erkannt.");
-            Reset();
+            Debug.Log("Richtig! Target bei " + (testTimeInMs) + "ms erkannt.");
+            resultList.Add(testTimeInMs);
+            NextTest();
         }
         else if (choice == "none")
         {
-            Debug.Log("Target bei " + (testTimeInMs - 50) + "ms nicht erkannt.");
-            UpdateTime();
+            testTimeInMs += 50;
+            UpdateTimeText();
+            Debug.Log("Target bei " + (testTimeInMs) + "ms nicht erkannt.");
         }
         else
         {
-            Debug.Log("Falsch! Target bei " + (testTimeInMs - 50) + "ms nicht korrekt erkannt.");
-            UpdateTime();
+            testTimeInMs += 50;
+            UpdateTimeText();
+            Debug.Log("Falsch! Target bei " + (testTimeInMs) + "ms nicht korrekt erkannt.");
         }
     }
 
@@ -257,51 +282,49 @@ public class RandomSpawner : MonoBehaviour
     public void Reset()
     {
         ClearObjects();
-        //testTimeInMs = 100;
 
-        UpdateTime();
+        testTimeInMs = 100;
+        UpdateTimeText();
     }
 
     //Text der Zeit wird geupdated
-    private void UpdateTime()
+    private void UpdateTimeText()
     {
         GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>().text = "Time: " + testTimeInMs + "ms";
     }
 
     private void UpdateTestText()
     {
-        int text = currentTestNumber +1;
-        GameObject.Find("TestText").GetComponent<TextMeshProUGUI>().text = "Test: " + text;
+        GameObject.Find("TestText").GetComponent<TextMeshProUGUI>().text = "Test: " + testName;
     }
 
     //hier wird das random Objekt ausgewählt, das gespanwt wird, um eine Vielfalt der Distraktoren zu erzeugen
     private GameObject RandomObject()
     {
-        int randomNumber = Random.Range(0, 2);
+        int randomNumber = Random.Range(0, 3);
         GameObject randomObject;
         if (randomNumber == 0)
         {
             randomObject = quaderObj;
 
             //macht alle Quadrate rot, wenn der Test dran ist, wo Conjunction Search getestet werden soll
-            if (currentTestNumber == 6)
+            if (testName == "Conjunction Search")
             {
                 randomObject.GetComponent<Image>().color = Color.red;
             }
             return randomObject;
         }
-        else
+        else if (randomNumber == 1 && testName != "Conjunction Search")
         {
-            return randomObject = circleObj;
+            randomObject = rectObj;
+            randomObject.GetComponent<Image>().color = Color.blue;
+            return randomObject;
         }
-    }
-    //hier stellt man die Zeit der jeweiliges Tests ein und ob es eine Vielfalt der Distraktoren gibt
-    private void TestSettings(int time, bool diversity)
-    {
-        testTimeInMs = time;
-        distractionDiversity = diversity;
-        UpdateTime();
-        UpdateTestText();
+        else
+        { 
+            randomObject = circleObj;
+            return randomObject;
+        }
     }
 }
 
