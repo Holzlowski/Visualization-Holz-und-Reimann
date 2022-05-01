@@ -13,6 +13,7 @@ public class RandomSpawner : MonoBehaviour
     [SerializeField] GameObject rectObj;
     [SerializeField] GameObject leftPanel;
     [SerializeField] GameObject rightPanel;
+    [SerializeField] GameObject resultPanel;
     [SerializeField] GameObject objectSelector;
 
     public int distanceToBorder = 2;
@@ -38,6 +39,7 @@ public class RandomSpawner : MonoBehaviour
     private bool distractionDiversity = false;
     private ArrayList resultList;
     private string testName;
+    private TMP_Text resultText;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +53,10 @@ public class RandomSpawner : MonoBehaviour
         objectDropdown = objectSelector.GetComponent<TMP_Dropdown>();
         currentObj = circleObj;
         objects = new List<GameObject>();
+
         resultList = new ArrayList();
+        resultPanel.SetActive(false);
+        resultText = resultPanel.GetComponentInChildren<TMP_Text>();
         NextTest();
     }
 
@@ -63,9 +68,11 @@ public class RandomSpawner : MonoBehaviour
         {
             case 1:
                 testName = "Farbton";
+                distractionDiversity = false;
                 break;
             case 2:
                 testName = "Form";
+                distractionDiversity = false;
                 break;
             case 3:
                 testName = "Erhöhte Vielfalt der Distraktoren";
@@ -73,6 +80,7 @@ public class RandomSpawner : MonoBehaviour
                 break;
             case 4:
                 testName = "Conjunction Search";
+                distractionDiversity = true;
                 break;
             case 5:
                 currentTestNumber = 0;
@@ -94,6 +102,14 @@ public class RandomSpawner : MonoBehaviour
     void Auswertung()
     {
         Debug.Log("Auswertung kommt hier hin. Zeiten für die jeweiligen Tests: "+ resultList[0] + "ms | " + resultList[1] + "ms | " + resultList[2] + "ms | " + resultList[3] + "ms.");
+        resultPanel.SetActive(true);
+        resultText.text = "Auswertung\n" +
+            "\nBenötigte Zeiten für Erkennung des Targets:\n" +
+            "\nFarbton = " + resultList[0] + "ms\n" +
+            "\nForm = " + resultList[1] + "ms\n" +
+            "\nErhöhte Vielfalt der Distraktoren = " + resultList[2] + "ms\n" +
+            "\nConjunction Search = " + resultList[3] + "ms\n" +
+            "\nZeiten unter 200-250ms gelten als präattentiv wahrgenommen.";
     }
 
     public void changeObj()
@@ -282,9 +298,11 @@ public class RandomSpawner : MonoBehaviour
     public void Reset()
     {
         ClearObjects();
-
+        resultPanel.SetActive(false);
         testTimeInMs = 100;
         UpdateTimeText();
+        currentTestNumber = 0;
+        NextTest();
     }
 
     //Text der Zeit wird geupdated
