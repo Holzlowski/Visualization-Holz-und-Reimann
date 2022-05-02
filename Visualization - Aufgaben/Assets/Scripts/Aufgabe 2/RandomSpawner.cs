@@ -60,6 +60,12 @@ public class RandomSpawner : MonoBehaviour
         NextTest();
     }
 
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            Exit();
+        }
+    }
+
     //mit dem Next Test Button geht er in den nächsten Test
     public void NextTest()
     {
@@ -343,6 +349,10 @@ public class RandomSpawner : MonoBehaviour
             randomObject = circleObj;
             return randomObject;
         }
+    }
+
+    void Exit(){
+        Application.Quit();
     }
 }
 
