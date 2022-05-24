@@ -22,7 +22,8 @@ public class FileManager : MonoBehaviour
         carsData = File.ReadAllLines(filePath);
         
         foreach(string line in carsData){
-            print(line);
+            string[] subs = line.Split('\t');
+            CarCard newCar = new CarCard(subs[0], subs[1], subs[2], subs[3], subs[4], subs[5], subs[6], subs[7], subs[8], subs[9]);
         }
     }
 }
