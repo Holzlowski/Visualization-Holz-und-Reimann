@@ -1999,6 +1999,21 @@ RectTransform:
   m_AnchoredPosition: {x: 8.537201, y: -0.0005187988}
   m_SizeDelta: {x: 17.0743, y: 0.00012207}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &454931901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454931899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f9fe200c538c74daabac5e98e13397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carCardPrefab: {fileID: 5626849714358308333, guid: 0cd53c0e536aafd4f829ee1ab0405879, type: 3}
+  data: []
+  subs: []
 --- !u!1 &515150788
 GameObject:
   m_ObjectHideFlags: 0
@@ -3585,7 +3600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fbaaca573c69a48985505d71f8e76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortAsc: 0
 --- !u!1 &1240604642
 GameObject:
   m_ObjectHideFlags: 0
@@ -4827,7 +4841,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1770936505}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99999976
+  m_Size: 0.9999997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
