@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class arrow_manager : MonoBehaviour
+public class ArrowManager : MonoBehaviour
 {
     public bool sortAsc = false;
     public void drehen() {
