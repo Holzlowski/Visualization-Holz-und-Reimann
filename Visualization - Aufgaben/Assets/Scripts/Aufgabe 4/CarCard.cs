@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class CarCard : MonoBehaviour
 {
-    [SerializeField] string carModel;
-    [SerializeField] string manufacturer;
-    [SerializeField] string MPG;
-    [SerializeField] string cylinders;
-    [SerializeField] string displacement;
-    [SerializeField] string horsepower;
-    [SerializeField] string weight;
-    [SerializeField] string acceleration;
-    [SerializeField] string modelYear;
-    [SerializeField] string origin;
+    public string carModel;
+    public string manufacturer;
+    public string MPG;
+    public string cylinders;
+    public string displacement;
+    public string horsepower;
+    public string weight;
+    public string acceleration;
+    public string modelYear;
+    public string origin;
 
     public CarCard(string carModel, string manufacturer, string MPG, string cylinders,
                 string displacement, string horsepower, string weight, string acceleration, string modelYear, string origin)
