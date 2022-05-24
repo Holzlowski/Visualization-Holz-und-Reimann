@@ -253,7 +253,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 214.52374, y: 0}
-  m_SizeDelta: {x: 425.4763, y: 480}
+  m_SizeDelta: {x: 585.48, y: 377.11}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &416830427
 MonoBehaviour:
@@ -354,11 +354,11 @@ RectTransform:
   m_Father: {fileID: 13465081}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00005610245}
-  m_SizeDelta: {x: 0, y: 480}
-  m_Pivot: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 239.79034, y: -20.162476}
+  m_SizeDelta: {x: 479.5807, y: 40.3251}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &484628200
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,8 +392,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00005610245}
-  m_SizeDelta: {x: 0, y: 480}
+  m_AnchoredPosition: {x: 0, y: 0.000127524}
+  m_SizeDelta: {x: 0, y: 377.11}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &762827142
 GameObject:
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1538328359}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.93661624
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -893,11 +893,11 @@ RectTransform:
   m_Father: {fileID: 2083661966}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 217.1861, y: 480}
-  m_Pivot: {x: 0, y: 1}
+  m_SizeDelta: {x: 217.1861, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1557228023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1236,8 +1236,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1770936506}
   m_HandleRect: {fileID: 1770936505}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.93661624
+  m_Value: 0.9999985
+  m_Size: 0.903398
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1412,7 +1412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
