@@ -7,23 +7,36 @@ using TMPro;
 public class CarCardCreator : MonoBehaviour
 {
     public GameObject carCardPrefab;
-    //public List<CarCard> carCards;
+    public Transform parent;
+    public List<string> carDataList;
     FileManager fm;
-    public string[] data;
+    public string[] carData;
     public string[] subs;
 
     private void Start()
     {
+        InitializeCarCards();
+    }
+
+    void InitializeCarCards()
+    {
         fm = GameObject.Find("FileManager").GetComponent<FileManager>();
-        data = fm.carsData;
+        carData = fm.data;
+
 
         if (fm != null)
         {
-            for (int i = 0; i < 1; i++)
-            {
-                subs = data[1].Split('\t');
+            CreateCards();
+        }
+    }
 
-                GameObject carCard = Instantiate(carCardPrefab, Vector3.zero, Quaternion.identity, transform.parent);
+    void CreateCards()
+    {
+        foreach (var car in carData)
+            {
+                subs = car.Split('\t');
+
+                GameObject carCard = Instantiate(carCardPrefab, parent);
 
                 carCard.transform.Find("Autoname").GetComponent<TextMeshProUGUI>().text = subs[0];
                 carCard.transform.Find("Hersteller").GetComponent<TextMeshProUGUI>().text = subs[1];
@@ -34,14 +47,22 @@ public class CarCardCreator : MonoBehaviour
                 carCard.transform.Find("Weight").GetComponent<TextMeshProUGUI>().text = subs[6];
                 carCard.transform.Find("Accelaration").GetComponent<TextMeshProUGUI>().text = subs[7];
                 carCard.transform.Find("Model Year").GetComponent<TextMeshProUGUI>().text = subs[8];
+                
+                switch (subs[9])
+                {
+                    case "American":
+                    carCard.transform.Find("Origin").GetComponent<TextMeshProUGUI>().text = "A";
+                    break;
+                    case "European":
+                    carCard.transform.Find("Origin").GetComponent<TextMeshProUGUI>().text = "E";
+                    break;
+                    case "Japanese":
+                    carCard.transform.Find("Origin").GetComponent<TextMeshProUGUI>().text = "J";
+                    break;
+                    default:
+                    carCard.transform.Find("Origin").GetComponent<TextMeshProUGUI>().text = " ";
+                    break;
+                }
             }
-
-        }
-        else
-        {
-            Debug.Log("Is nichts");
-        }
-
-
     }
 }

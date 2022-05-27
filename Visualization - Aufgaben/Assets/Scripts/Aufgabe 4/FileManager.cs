@@ -5,9 +5,8 @@ using System.IO;
 
 public class FileManager : MonoBehaviour
 {
-    public string[] carsData;
-    public string[] subs;
-    public List<CarCard> carCards;
+    public string[] data;
+    List<string> dataList;
     string filePath, fileName;
 
     // Start is called before the first frame update
@@ -21,19 +20,10 @@ public class FileManager : MonoBehaviour
     // Update is called once per frame
     public void ReadFromFile()
     {
-        carsData = File.ReadAllLines(filePath);
-        
-        foreach(string line in carsData){
-            subs = line.Split('\t');
-            //CarCard newCar = new CarCard(subs[0], subs[1], subs[2], subs[3], subs[4], subs[5], subs[6], subs[7], subs[8], subs[9]);
-            //carCards.Add(newCar);
-            // newCar.toString();
-        }
+       data = File.ReadAllLines(filePath);
+       dataList = new List<string>(data);
+       //weil erster Datensatz nur die Attribute wie Hersteller etc. sind
+       dataList.RemoveAt(0);
+       data = dataList.ToArray();
     }
-
-    public List<CarCard> GetCarCards()
-    {
-        return carCards;
-    }
-
 }

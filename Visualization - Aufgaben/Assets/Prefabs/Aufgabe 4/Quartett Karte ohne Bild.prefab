@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8753191538612485197}
   - component: {fileID: 4557244902026371000}
   - component: {fileID: 7411547921598042835}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: 'Displacement:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 5144570251775746190}
   - component: {fileID: 5547396922686122295}
   - component: {fileID: 8231740070139653091}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Autobild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 6945770329914102719}
   - component: {fileID: 4077610172649337700}
   - component: {fileID: 6000038013279976628}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: 'Acceleration:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 8884867115067633997}
   - component: {fileID: 1210204353225595888}
   - component: {fileID: 1397578226407638854}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Weight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 7351930835438044142}
   - component: {fileID: 4232719030115007201}
   - component: {fileID: 7827366835213177635}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Displacement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 8096268985447168482}
   - component: {fileID: 613936505887581576}
   - component: {fileID: 8730554384625915418}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: 'Cylinders:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +762,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8066420988544547472}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Attribute
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -802,7 +802,7 @@ GameObject:
   - component: {fileID: 7739340696598780891}
   - component: {fileID: 5246736552662935700}
   - component: {fileID: 8463214568443710969}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Horsepower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -937,7 +937,7 @@ GameObject:
   - component: {fileID: 8063710598504914900}
   - component: {fileID: 1055405713790258443}
   - component: {fileID: 528555689501064984}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: 'Weight:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1072,7 +1072,7 @@ GameObject:
   - component: {fileID: 6985658290148930496}
   - component: {fileID: 1604357094363546179}
   - component: {fileID: 2175765361847445476}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1209,7 +1209,7 @@ GameObject:
   - component: {fileID: 923071276610325981}
   - component: {fileID: 1153288326010501740}
   - component: {fileID: 3787085821978204756}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: 'MPG:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1344,7 +1344,7 @@ GameObject:
   - component: {fileID: 1943515648930405368}
   - component: {fileID: 4368470220959922231}
   - component: {fileID: 620786632434472919}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Hersteller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1366,11 +1366,11 @@ RectTransform:
   m_Father: {fileID: 5626849714358308338}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.6145, y: 82.7}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 15.4, y: -10.093}
   m_SizeDelta: {x: 81.2216, y: 14.4981}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &4368470220959922231
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1483,7 +1483,7 @@ GameObject:
   - component: {fileID: 5626849714358308336}
   - component: {fileID: 5626849714358308339}
   - component: {fileID: 3456950300425368334}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Quartett Karte ohne Bild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1529,7 +1529,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5626849714358308333}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1645,7 +1645,7 @@ GameObject:
   - component: {fileID: 1828951780489943686}
   - component: {fileID: 9010461004093703619}
   - component: {fileID: 2817371390359568853}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: 'Model Year:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1780,7 +1780,7 @@ GameObject:
   - component: {fileID: 664473201166607421}
   - component: {fileID: 6592917211996652582}
   - component: {fileID: 5340350347502503338}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1802,11 +1802,11 @@ RectTransform:
   m_Father: {fileID: 5626849714358308338}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 42.196827, y: 82.7}
-  m_SizeDelta: {x: 23.1246, y: 14.4981}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -11.1, y: -10.093}
+  m_SizeDelta: {x: 23.124603, y: 14.4981}
+  m_Pivot: {x: 1, y: 1}
 --- !u!222 &6592917211996652582
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1915,7 +1915,7 @@ GameObject:
   - component: {fileID: 4760207619063940811}
   - component: {fileID: 8131016719278034208}
   - component: {fileID: 8131258123010380960}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Autoname
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2052,7 +2052,7 @@ GameObject:
   - component: {fileID: 6955687109382224752}
   - component: {fileID: 7274110202818993527}
   - component: {fileID: 6074528959397988389}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Accelaration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2187,7 +2187,7 @@ GameObject:
   - component: {fileID: 1605050133458620016}
   - component: {fileID: 6290436774872760233}
   - component: {fileID: 936406524525074980}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Model Year
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2322,7 +2322,7 @@ GameObject:
   - component: {fileID: 2743879993254828660}
   - component: {fileID: 3964004210771528964}
   - component: {fileID: 5828213214852778904}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: 'Horsepower:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2459,7 +2459,7 @@ GameObject:
   - component: {fileID: 4073715550953639435}
   - component: {fileID: 2929619680752976435}
   - component: {fileID: 1424883885836272637}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MPG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
