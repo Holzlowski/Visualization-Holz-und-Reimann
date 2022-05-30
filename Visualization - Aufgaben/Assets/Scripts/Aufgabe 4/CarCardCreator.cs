@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using System.Linq;
 
 public class CarCardCreator : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class CarCardCreator : MonoBehaviour
     FileManager fm;
     public string[] carData;
     public string[] subs;
+    public List<GameObject> carCardList = new List<GameObject>();
 
     private void Start()
     {
@@ -35,9 +36,8 @@ public class CarCardCreator : MonoBehaviour
         foreach (var car in carData)
             {
                 subs = car.Split('\t');
-
                 GameObject carCard = Instantiate(carCardPrefab, parent);
-
+                
                 carCard.transform.Find("Autoname").GetComponent<TextMeshProUGUI>().text = subs[0];
                 carCard.transform.Find("Hersteller").GetComponent<TextMeshProUGUI>().text = subs[1];
                 carCard.transform.Find("MPG").GetComponent<TextMeshProUGUI>().text = subs[2];
@@ -63,6 +63,27 @@ public class CarCardCreator : MonoBehaviour
                     carCard.transform.Find("Origin").GetComponent<TextMeshProUGUI>().text = " ";
                     break;
                 }
+
+                carCardList.Add(carCard);
             }
+    }
+
+    public void FilterCardsOrigin (string origin)
+    {
+        Debug.Log(carCardList.Count);
+        
+        List<GameObject> displayList = (from car in carCardList
+            where car.transform.Find("Origin").GetComponent<TextMeshProUGUI>().text == origin
+            select car).ToList();
+
+        Debug.Log(displayList.Count);
+
+        foreach (Transform child in transform) {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        foreach (GameObject obj in displayList){
+            Instantiate(obj, parent);
+        }
     }
 }

@@ -924,8 +924,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carCardPrefab: {fileID: 5626849714358308333, guid: 0cd53c0e536aafd4f829ee1ab0405879, type: 3}
   parent: {fileID: 103510531}
-  dataList: []
+  carDataList: []
+  carData: []
   subs: []
+  carCardList: []
 --- !u!1 &120947675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,7 +1616,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 103510536}
+        m_TargetAssemblyTypeName: CarCardCreator, Assembly-CSharp
+        m_MethodName: FilterCardsOrigin
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: J
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &340694169
 GameObject:
@@ -2328,8 +2342,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carCardPrefab: {fileID: 5626849714358308333, guid: 0cd53c0e536aafd4f829ee1ab0405879, type: 3}
   parent: {fileID: 0}
-  dataList: []
+  carDataList: []
+  carData: []
   subs: []
+  carCardList: []
 --- !u!114 &454931902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2881,7 +2897,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 164371989}
   m_HandleRect: {fileID: 164371988}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3325,7 +3341,6 @@ GameObject:
   - component: {fileID: 909931829}
   - component: {fileID: 909931828}
   - component: {fileID: 909931827}
-  - component: {fileID: 909931826}
   m_Layer: 5
   m_Name: Dropdown Hersteller
   m_TagString: Untagged
@@ -3356,18 +3371,6 @@ RectTransform:
   m_AnchoredPosition: {x: -27.19687, y: 43.900845}
   m_SizeDelta: {x: 130.0919, y: 24.3922}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &909931826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 909931824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e34b08893e0ba4a91b185da339ec7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &909931827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4024,7 +4027,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224351939}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -4721,7 +4724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48f72e875f1d9a4eb3c95c29873123d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carsDataList: []
+  data: []
 --- !u!4 &1588673092
 Transform:
   m_ObjectHideFlags: 0
@@ -4822,7 +4825,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 103510536}
+        m_TargetAssemblyTypeName: CarCardCreator, Assembly-CSharp
+        m_MethodName: FilterCardsOrigin
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: E
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1714165531
 GameObject:
@@ -5465,7 +5480,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 103510536}
+        m_TargetAssemblyTypeName: CarCardCreator, Assembly-CSharp
+        m_MethodName: FilterCardsOrigin
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: A
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1988539801
 GameObject:
