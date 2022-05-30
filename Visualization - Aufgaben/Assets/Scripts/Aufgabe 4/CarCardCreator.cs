@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
@@ -13,6 +14,7 @@ public class CarCardCreator : MonoBehaviour
     public string[] carData;
     public string[] subs;
     public List<GameObject> carCardList = new List<GameObject>();
+    public Color A,E,J;
 
     private void Start()
     {
@@ -37,6 +39,7 @@ public class CarCardCreator : MonoBehaviour
             {
                 subs = car.Split('\t');
                 GameObject carCard = Instantiate(carCardPrefab, parent);
+                Image cardColor = carCard.GetComponent<Image>();
                 
                 carCard.transform.Find("Autoname").GetComponent<TextMeshProUGUI>().text = subs[0];
                 carCard.transform.Find("Hersteller").GetComponent<TextMeshProUGUI>().text = subs[1];
@@ -52,12 +55,15 @@ public class CarCardCreator : MonoBehaviour
                 {
                     case "American":
                     carCard.transform.Find("Origin").GetComponent<TextMeshProUGUI>().text = "A";
+                    cardColor.color = A;
                     break;
                     case "European":
                     carCard.transform.Find("Origin").GetComponent<TextMeshProUGUI>().text = "E";
+                    cardColor.color = E;
                     break;
                     case "Japanese":
                     carCard.transform.Find("Origin").GetComponent<TextMeshProUGUI>().text = "J";
+                    cardColor.color = J;
                     break;
                     default:
                     carCard.transform.Find("Origin").GetComponent<TextMeshProUGUI>().text = " ";
