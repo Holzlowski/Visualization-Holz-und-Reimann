@@ -85,11 +85,13 @@ public class CarCardCreator : MonoBehaviour
         Debug.Log(displayList.Count);
 
         foreach (Transform child in transform) {
-            GameObject.Destroy(child.gameObject);
+            //GameObject.Destroy(child.gameObject);
+            child.gameObject.SetActive(false);
         }
 
         foreach (GameObject obj in displayList){
             Instantiate(obj, parent);
+            obj.SetActive(true);
         }
     }
 }
