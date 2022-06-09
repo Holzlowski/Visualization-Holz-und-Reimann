@@ -60,8 +60,10 @@ public class RandomSpawner : MonoBehaviour
         NextTest();
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Escape)){
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             Exit();
         }
     }
@@ -107,7 +109,7 @@ public class RandomSpawner : MonoBehaviour
 
     void Auswertung()
     {
-        Debug.Log("Auswertung kommt hier hin. Zeiten für die jeweiligen Tests: "+ resultList[0] + "ms | " + resultList[1] + "ms | " + resultList[2] + "ms | " + resultList[3] + "ms.");
+        Debug.Log("Auswertung kommt hier hin. Zeiten für die jeweiligen Tests: " + resultList[0] + "ms | " + resultList[1] + "ms | " + resultList[2] + "ms | " + resultList[3] + "ms.");
         resultPanel.SetActive(true);
         resultText.text = "Auswertung\n" +
             "\nBenötigte Zeiten für Erkennung des Targets:\n" +
@@ -345,13 +347,14 @@ public class RandomSpawner : MonoBehaviour
             return randomObject;
         }
         else
-        { 
+        {
             randomObject = circleObj;
             return randomObject;
         }
     }
 
-    void Exit(){
+    void Exit()
+    {
         Application.Quit();
     }
 }

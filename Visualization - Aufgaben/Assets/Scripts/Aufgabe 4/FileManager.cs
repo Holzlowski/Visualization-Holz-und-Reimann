@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
 public class FileManager : MonoBehaviour
 {
@@ -20,10 +19,10 @@ public class FileManager : MonoBehaviour
     // Update is called once per frame
     public void ReadFromFile()
     {
-       data = File.ReadAllLines(filePath);
-       dataList = new List<string>(data);
-       //weil erster Datensatz nur die Attribute wie Hersteller etc. sind
-       dataList.RemoveAt(0);
-       data = dataList.ToArray();
+        data = File.ReadAllLines(filePath);
+        dataList = new List<string>(data);
+        //weil erster Datensatz nur die Attribute wie Hersteller etc. sind
+        dataList.RemoveAt(0);
+        data = dataList.ToArray();
     }
 }

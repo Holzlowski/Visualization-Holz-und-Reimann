@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-public class DropdownManagerr : MonoBehaviour
+public class DropdownManager : MonoBehaviour
 {
     List<string> m_DropOptions = new List<string>();
     //This is the Dropdown
@@ -12,17 +11,29 @@ public class DropdownManagerr : MonoBehaviour
 
     public CarCardCreator ccc;
 
-    void Start()
+    void Update()
     {
-        foreach(GameObject obj in ccc.carCardList){
-            string herstellerText = obj.transform.Find("Hersteller").GetComponent<TextMeshProUGUI>().text;
-            m_DropOptions.Add(herstellerText);
-        }
-
         m_Dropdown = GetComponent<TMP_Dropdown>();
         //Clear the old options of the Dropdown menu
         m_Dropdown.ClearOptions();
+        foreach (Transform child in ccc.parent)
+        {
+            if (child.gameObject.activeInHierarchy)
+            {
+                string herstellerText = child.transform.Find("Hersteller").GetComponent<TextMeshProUGUI>().text;
+                if (!m_DropOptions.Contains(herstellerText))
+                    m_DropOptions.Add(herstellerText);
+            }
+        }
+
+        m_Dropdown = GetComponent<TMP_Dropdown>();
+        
         //Add the options created in the List above
         m_Dropdown.AddOptions(m_DropOptions);
+    }
+
+    public void clearOptions()
+    {
+        m_DropOptions.Clear();
     }
 }
