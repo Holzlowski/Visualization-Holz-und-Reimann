@@ -72,8 +72,8 @@ public class CarCardCreator : MonoBehaviour
                     carCard.transform.Find("Origin").GetComponent<TextMeshProUGUI>().text = " ";
                     break;
             }
-
-            carCardList.Add(carCard);
+ 
+            //carCardList.Add(carCard);
         }
     }
 
@@ -84,7 +84,7 @@ public class CarCardCreator : MonoBehaviour
             case true:
                 if (toggle.name == "Japan")
                 {
-                    foreach (Transform child in parent)
+                    foreach (RectTransform child in parent)
                     {
                         if (child.Find("Origin").GetComponent<TextMeshProUGUI>().text == "J")
                             child.gameObject.SetActive(true);
@@ -92,7 +92,7 @@ public class CarCardCreator : MonoBehaviour
                 }
                 if (toggle.name == "Europa")
                 {
-                    foreach (Transform child in parent)
+                    foreach (RectTransform child in parent)
                     {
                         if (child.Find("Origin").GetComponent<TextMeshProUGUI>().text == "E")
                             child.gameObject.SetActive(true);
@@ -100,7 +100,7 @@ public class CarCardCreator : MonoBehaviour
                 }
                 if (toggle.name == "America")
                 {
-                    foreach (Transform child in parent)
+                    foreach (RectTransform child in parent)
                     {
                         if (child.Find("Origin").GetComponent<TextMeshProUGUI>().text == "A")
                             child.gameObject.SetActive(true);
@@ -110,7 +110,7 @@ public class CarCardCreator : MonoBehaviour
             case false:
                 if (toggle.name == "Japan")
                 {
-                   foreach (Transform child in parent)
+                   foreach (RectTransform child in parent)
                     {
                         if (child.Find("Origin").GetComponent<TextMeshProUGUI>().text == "J")
                             child.gameObject.SetActive(false);
@@ -118,7 +118,7 @@ public class CarCardCreator : MonoBehaviour
                 }
                 if (toggle.name == "Europa")
                 {
-                    foreach (Transform child in parent)
+                    foreach (RectTransform child in parent)
                     {
                         if (child.Find("Origin").GetComponent<TextMeshProUGUI>().text == "E")
                             child.gameObject.SetActive(false);
@@ -126,7 +126,7 @@ public class CarCardCreator : MonoBehaviour
                 }
                 if (toggle.name == "America")
                 {
-                    foreach (Transform child in parent)
+                    foreach (RectTransform child in parent)
                     {
                         if (child.Find("Origin").GetComponent<TextMeshProUGUI>().text == "A")
                             child.gameObject.SetActive(false);
@@ -139,21 +139,31 @@ public class CarCardCreator : MonoBehaviour
     public void SortCars(TMP_Dropdown m_Dropdown)
     {
         Debug.Log(m_Dropdown.options[m_Dropdown.value].text);
-        List<Transform> childs = new List<Transform>();
+        //List<Transform> childs = new List<Transform>();
         switch (m_Dropdown.options[m_Dropdown.value].text)
         {
             case "Hubraum":
-                foreach(Transform child in parent)
+
+                List<RectTransform> children = new List<RectTransform>();
+                foreach (RectTransform child in parent)
                 {
-                    childs.Add(child);
+                    children.Add(child);
+                    child.SetParent(null);
                 }
 
-                childs.Sort((p1, p2) => p1.transform.Find("Displacement").GetComponent<TextMeshProUGUI>().text.ToIntArray().CompareTo(int.Parse(p2.transform.Find("Displacement").GetComponent<TextMeshProUGUI>().text)));
+                children = children.OrderBy(child => int.Parse(child.Find("Displacement").GetComponent<TextMeshProUGUI>().text)).ToList();
 
-                for (int i = 0; i < childs.Count; i++)
+                foreach (RectTransform child in parent)
                 {
-                    childs[i].SetSiblingIndex(i);
+                    GameObject.Destroy(child.gameObject);
                 }
+
+                foreach (RectTransform child in children)
+                {
+                    child.SetParent(null);
+                    child.SetParent(parent.transform);
+                }
+
                 break;
             case "PS":
 
