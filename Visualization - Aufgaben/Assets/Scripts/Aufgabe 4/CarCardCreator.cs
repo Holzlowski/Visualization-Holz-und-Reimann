@@ -135,4 +135,30 @@ public class CarCardCreator : MonoBehaviour
                 break;
         }
     }
+    
+    public void SortCars(TMP_Dropdown m_Dropdown)
+    {
+        Debug.Log(m_Dropdown.options[m_Dropdown.value].text);
+        List<Transform> childs = new List<Transform>();
+        switch (m_Dropdown.options[m_Dropdown.value].text)
+        {
+            case "Hubraum":
+                foreach(Transform child in parent)
+                {
+                    childs.Add(child);
+                }
+
+                childs.Sort((p1, p2) => p1.transform.Find("Displacement").GetComponent<TextMeshProUGUI>().text.ToIntArray().CompareTo(int.Parse(p2.transform.Find("Displacement").GetComponent<TextMeshProUGUI>().text)));
+
+                for (int i = 0; i < childs.Count; i++)
+                {
+                    childs[i].SetSiblingIndex(i);
+                }
+                break;
+            case "PS":
+
+                break;
+        }
+    }
+    
 }

@@ -11,7 +11,12 @@ public class DropdownManager : MonoBehaviour
 
     public CarCardCreator ccc;
 
-    void Update()
+    private void Start()
+    {
+        UpdateDropdown();
+    }
+
+    void UpdateDropdown()
     {
         m_Dropdown = GetComponent<TMP_Dropdown>();
         //Clear the old options of the Dropdown menu
@@ -35,5 +40,6 @@ public class DropdownManager : MonoBehaviour
     public void clearOptions()
     {
         m_DropOptions.Clear();
+        UpdateDropdown();
     }
 }
