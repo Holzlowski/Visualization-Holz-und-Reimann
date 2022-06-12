@@ -140,35 +140,66 @@ public class CarCardCreator : MonoBehaviour
     {
         Debug.Log(m_Dropdown.options[m_Dropdown.value].text);
         //List<Transform> childs = new List<Transform>();
+        string value = "";
         switch (m_Dropdown.options[m_Dropdown.value].text)
         {
             case "Hubraum":
-
-                List<RectTransform> children = new List<RectTransform>();
-                foreach (RectTransform child in parent)
-                {
-                    children.Add(child);
-                    child.SetParent(null);
-                }
-
-                children = children.OrderBy(child => int.Parse(child.Find("Displacement").GetComponent<TextMeshProUGUI>().text)).ToList();
-
-                foreach (RectTransform child in parent)
-                {
-                    GameObject.Destroy(child.gameObject);
-                }
-
-                foreach (RectTransform child in children)
-                {
-                    child.SetParent(null);
-                    child.SetParent(parent.transform);
-                }
-
+                value = "Displacement";
+                SortByValue(value);
                 break;
-            case "PS":
 
+            case "PS":
+                value = "Horsepower";
+                SortByValue(value);
+                break;
+
+            case "Zylinder":
+                value = "Cylinders";
+                SortByValue(value);
+                break;
+
+            case "Gewicht in lbs":
+                value = "Weight";
+                SortByValue(value);
+                break;
+
+            case "Beschleunigung 0-60mp/h":
+                value = "Accelaration";
+                SortByValue(value);
+                break;
+
+            case "MPG":
+                value = "MPG";
+                SortByValue(value);
+                break;
+
+            case "Baujahr":
+                value = "Model Year";
+                SortByValue(value);
                 break;
         }
     }
-    
+
+    private void SortByValue(string value)
+    {
+        List<RectTransform> children = new List<RectTransform>();
+        foreach (RectTransform child in parent)
+        {
+            children.Add(child);
+            child.SetParent(null);
+        }
+
+        children = children.OrderBy(child => int.Parse(child.Find(value).GetComponent<TextMeshProUGUI>().text)).ToList();
+
+        foreach (RectTransform child in parent)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        foreach (RectTransform child in children)
+        {
+            child.SetParent(null);
+            child.SetParent(parent.transform);
+        }
+    }
 }
