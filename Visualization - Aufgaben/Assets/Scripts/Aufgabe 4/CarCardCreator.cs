@@ -180,6 +180,35 @@ public class CarCardCreator : MonoBehaviour
         }
     }
 
+    public void FilterCardsManufacturer(TMP_Dropdown m_Dropdown)
+    {
+        if (m_Dropdown.options[m_Dropdown.value].text == "show All")
+        {
+            foreach (RectTransform child in parent)
+            {
+                if(child.gameObject.activeSelf == false)
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            foreach (RectTransform child in parent)
+            {
+                if (child.Find("Hersteller").GetComponent<TextMeshProUGUI>().text == m_Dropdown.options[m_Dropdown.value].text && child.gameObject.activeInHierarchy)
+                {
+                    child.gameObject.SetActive(true);
+                }
+
+                else
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
+        }    
+    }
+
     private void SortByValue(string value)
     {
         List<RectTransform> children = new List<RectTransform>();
