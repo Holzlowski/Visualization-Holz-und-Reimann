@@ -831,7 +831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.1620035, y: 174.88123}
+  m_AnchoredPosition: {x: -4.1620035, y: 175.37051}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.94}
 --- !u!114 &103510532
@@ -927,7 +927,6 @@ MonoBehaviour:
   carDataList: []
   carData: []
   subs: []
-  carCardList: []
   A: {r: 0.8, g: 0.16470589, b: 0.21176471, a: 1}
   E: {r: 0, g: 0.627451, b: 0.6901961, a: 1}
   J: {r: 0.92941177, g: 0.7882353, b: 0.31764707, a: 1}
@@ -935,7 +934,8 @@ MonoBehaviour:
   - {fileID: 273390514}
   - {fileID: 1985720894}
   - {fileID: 1662396011}
-  displayList: []
+  children: []
+  childrenWithoutValue: []
 --- !u!1 &120947675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,12 +2365,12 @@ MonoBehaviour:
   carDataList: []
   carData: []
   subs: []
-  carCardList: []
   A: {r: 0, g: 0, b: 0, a: 0}
   E: {r: 0, g: 0, b: 0, a: 0}
   J: {r: 0, g: 0, b: 0, a: 0}
   toggleList: []
-  displayList: []
+  children: []
+  childrenWithoutValue: []
 --- !u!114 &454931902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2922,7 +2922,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 164371989}
   m_HandleRect: {fileID: 164371988}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

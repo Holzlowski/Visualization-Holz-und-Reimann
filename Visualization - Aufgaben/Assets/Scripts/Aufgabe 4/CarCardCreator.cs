@@ -12,10 +12,12 @@ public class CarCardCreator : MonoBehaviour
     FileManager fm;
     public string[] carData;
     public string[] subs;
-    public List<GameObject> carCardList = new List<GameObject>();
+    //public List<GameObject> carCardList = new List<GameObject>();
     public Color A, E, J;
     public List<Toggle> toggleList = new List<Toggle>();
-    public List<GameObject> displayList = new List<GameObject>();
+    //public List<GameObject> displayList = new List<GameObject>();
+    public List<RectTransform> children = new List<RectTransform>();
+    public List<RectTransform> childrenWithoutValue = new List<RectTransform>();
 
     private void Start()
     {
@@ -27,13 +29,16 @@ public class CarCardCreator : MonoBehaviour
         fm = GameObject.Find("FileManager").GetComponent<FileManager>();
         carData = fm.data;
 
-        displayList = carCardList;
+       //displayList = carCardList;
 
 
         if (fm != null)
         {
             CreateCards();
         }
+
+        //addChildren();
+
     }
 
     void CreateCards()
@@ -209,26 +214,63 @@ public class CarCardCreator : MonoBehaviour
         }    
     }
 
+
     private void SortByValue(string value)
     {
-        List<RectTransform> children = new List<RectTransform>();
+        children.Clear();
+        childrenWithoutValue.Clear();
+
         foreach (RectTransform child in parent)
         {
-            children.Add(child);
-            child.SetParent(null);
+            if(child.Find(value).GetComponent<TextMeshProUGUI>().text != "NA")
+            {
+                children.Add(child);
+            }
+            else
+            {
+                childrenWithoutValue.Add(child);
+            }
         }
 
-        children = children.OrderBy(child => int.Parse(child.Find(value).GetComponent<TextMeshProUGUI>().text)).ToList();
+        for(int i = 0; i < children.Count; i++)
+        {
+            children[i].SetParent(null);
+        }
+
+        if (childrenWithoutValue.Count != 0)
+        {
+            for (int i = 0; i < childrenWithoutValue.Count; i++)
+            {
+                childrenWithoutValue[i].SetParent(null);
+            }
+        }
+
+        children = children.OrderBy(child => float.Parse(child.Find(value).GetComponent<TextMeshProUGUI>().text)).ToList();
+
+        //foreach(RectTransform child in children)
+        //{
+        //    Debug.Log(float.Parse(child.Find(value).GetComponent<TextMeshProUGUI>().text));
+        //}
 
         foreach (RectTransform child in parent)
         {
             GameObject.Destroy(child.gameObject);
         }
 
+
         foreach (RectTransform child in children)
         {
-            child.SetParent(null);
             child.SetParent(parent.transform);
         }
+
+
+        if (childrenWithoutValue.Count != 0)
+        {
+            foreach (RectTransform NA in childrenWithoutValue)
+            {
+                NA.SetParent(parent.transform);
+            }
+        }
+
     }
 }
